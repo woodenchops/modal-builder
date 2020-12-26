@@ -83,7 +83,10 @@ const muhModal = new Modal({
     title: 'My Modal',
     classes: ['bob', 'jogn'],
     desc: 'big sale, blah, blah',
-    cta: {text: 'LEARN MORE', link: '#', classes: ['huhu']},
+    cta: [
+        {text: 'LEARN MORE', link: '#', classes: ['huhu']},
+        {text: 'CANCEL', link: '#', classes: ['huhu']}
+    ],
     container: 'modal-app',
     openOnPageLoad: true,
     triggerModalCTA: '.openModal'
