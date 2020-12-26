@@ -28,7 +28,9 @@ class Modal {
 
     RenderModal() {
         this._container.innerHTML = this._backdrop + this._modalType(this);
+        this.BackDropCloseHandler();
         this.ToggleModal();
+        this.HandleCTA();
     }
 
     DestroyModal() {
@@ -61,10 +63,18 @@ class Modal {
         triggerModalCTA.addEventListener('click', () => this.OpenModal());
     }
 
+    HandleCTA(){
+        this._cta && this._cta.length > 0 && this._cta.map(cta => {
+            let button = document.getElementById(cta.id);
+            return button.addEventListener('click', () => {
+               return cta.eventHandler();
+            });
+        });
+    }
+
     init() {
         this.ModalActiveState = this._openOnPageLoad;
         this.RenderModal();
-        this.BackDropCloseHandler();
         this.TriggerModalCTA();
     }
     
@@ -76,8 +86,8 @@ const muhModal = new Modal({
     classes: ['bob', 'jogn'],
     desc: 'big sale, blah, blah',
     cta: [
-        {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['huhu'], eventHandler: () => {alert()}},
-        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['huhu'], eventHandler: () => {alert()}}
+        {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['learn-more'], eventHandler: () => {alert('Learn more')}},
+        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['cancel'], eventHandler: () => {muhModal.CloseModal();}}
     ],
     container: 'modal-app',
     openOnPageLoad: true,

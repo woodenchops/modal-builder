@@ -4,6 +4,7 @@
 
 body, html {
     margin: 0;
+    font-family: sans-serif;
 }
 
 #modal-app {
@@ -27,6 +28,7 @@ body, html {
     padding: 1rem;
     width: 100%;
     max-width: 600px;
+    text-align: center;
 }
 
 
@@ -46,4 +48,16 @@ body, html {
 
 .modal-title {
     margin: 0;
+}
+
+.modal-cta {
+    text-decoration: none;
+    background-color: cornflowerblue;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.modal-cta.cancel {
+    background-color: grey
 }
