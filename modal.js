@@ -56,13 +56,6 @@ class Modal {
         }  
     }
 
-    LearnMoreHandler() {
-        if(this.ModalActiveState) {
-            const learnMore = document.querySelector('.modal-cta');
-            learnMore.addEventListener('click', () => alert('hghg'));
-        }  
-    }
-
     TriggerModalCTA() {
         const triggerModalCTA = document.querySelector(this._triggerModalCTA);
         triggerModalCTA.addEventListener('click', () => this.OpenModal());
@@ -72,7 +65,6 @@ class Modal {
         this.ModalActiveState = this._openOnPageLoad;
         this.RenderModal();
         this.BackDropCloseHandler();
-        this.LearnMoreHandler();
         this.TriggerModalCTA();
     }
     
@@ -84,8 +76,8 @@ const muhModal = new Modal({
     classes: ['bob', 'jogn'],
     desc: 'big sale, blah, blah',
     cta: [
-        {text: 'LEARN MORE', link: '#', classes: ['huhu']},
-        {text: 'CANCEL', link: '#', classes: ['huhu']}
+        {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['huhu'], eventHandler: () => {alert()}},
+        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['huhu'], eventHandler: () => {alert()}}
     ],
     container: 'modal-app',
     openOnPageLoad: true,
