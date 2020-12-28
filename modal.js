@@ -17,15 +17,10 @@ class Modal {
         this._backdrop = `<div class="modal-backdrop"></div>`;       
         this._container = document.createElement('div');
         this._container.classList.add('modal-app');
-        this._body = document.querySelector('body');
+        this._body = document.querySelector(props.attachTo) || document.querySelector('body');
+        this._loadIn = props.loadIn;
         
         this.init();
-
-        // return {
-        //     OpenModal: this.OpenModal,
-        //     CloseModal: this.CloseModal,
-        //     ToggleModal: this.ToggleModal
-        // };
 
     }
 
@@ -93,7 +88,7 @@ class Modal {
 
     init() {
         this.ModalActiveState = this._openOnPageLoad;
-        this.RenderModal();
+        (this._loadIn && this._openOnPageLoad) ? setTimeout(() => {this.RenderModal()}, this._loadIn) : this.RenderModal()
         this.TriggerModalCTA();
     }
     
@@ -102,15 +97,17 @@ class Modal {
 const homepageModal = new Modal({
     modalType: 'ModalTwo',
     title: 'My Modal',
-    classes: ['modal-body', 'modalOne'],
+    bgImage: './assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg',
     desc: 'big sale, blah, blah',
     cta: [
         {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['learn-more'], eventHandler: () => {alert('Learn more')}},
         {id: 'cancel', text: 'CANCEL', link: '#', classes: ['cancel'], eventHandler: () => {homepageModal.CloseModal();}}
     ],
+    classes: ['modal-body', 'modalOne'],
     openOnPageLoad: true,
     triggerModalCTA: '.openModal',
-    bgImage: './assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg'
+    attachTo: '.page-787',
+    loadIn: 2000
 });
 
 console.log(homepageModal);
