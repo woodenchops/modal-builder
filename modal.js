@@ -81,7 +81,7 @@ class Modal {
         this._cta && this._cta.length > 0 && this._cta.map(cta => {
             let button = document.getElementById(cta.id);
             return button.addEventListener('click', () => {
-               return cta.eventHandler();
+               return cta.eventHandler && cta.eventHandler();
             });
         });
     }
@@ -107,7 +107,7 @@ const homepageModal = new Modal({
     openOnPageLoad: true,
     triggerModalCTA: '.openModal',
     attachTo: '.page-787',
-    loadIn: 2000
+    // loadIn: 2000
 });
 
 console.log(homepageModal);
