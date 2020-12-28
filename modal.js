@@ -1,20 +1,31 @@
-import {modalOne} from './modalTypes.js';
+import {setModalType} from './modalTypes.js';
 
 class Modal {
     constructor(props) {
-        this._modalType = props.modalType;
+
+        this._props = props;
         this._title = props.title;
         this._desc = props.desc;
         this._cta = props.cta;
+        this._bgImage = props.bgImage || '';
         this._classes = props.classes;
+        this._activeClass = 'active-modal';
         this._ctaClasses = props.cta.classes;
         this._modalActiveState = this.ModalActiveState;
         this._openOnPageLoad = props.openOnPageLoad;
         this._triggerModalCTA = props.triggerModalCTA;
         this._backdrop = `<div class="modal-backdrop"></div>`;       
-        this._container = document.getElementById(props.container);
+        this._container = document.createElement('div');
+        this._container.classList.add('modal-app');
+        this._body = document.querySelector('body');
         
         this.init();
+
+        // return {
+        //     OpenModal: this.OpenModal,
+        //     CloseModal: this.CloseModal,
+        //     ToggleModal: this.ToggleModal
+        // };
 
     }
 
@@ -27,10 +38,16 @@ class Modal {
     }
 
     RenderModal() {
-        this._container.innerHTML = this._backdrop + this._modalType(this);
-        this.BackDropCloseHandler();
-        this.ToggleModal();
-        this.HandleCTA();
+        setModalType(this, this._props);
+
+        if(this._modalType) {
+            this._container.innerHTML = this._backdrop + this._modalType(this);
+            this._body.appendChild(this._container);
+            this.BackDropCloseHandler();
+            this.ToggleModal();
+            this.HandleCTA();
+
+        }
     }
 
     DestroyModal() {
@@ -38,7 +55,7 @@ class Modal {
     }
 
     ToggleModal() {
-        this.ModalActiveState ? this._container.classList.add('active') : this._container.classList.remove('active');
+        this.ModalActiveState ? this._body.classList.add(this._activeClass) : this._body.classList.remove(this._activeClass);
     }
 
     CloseModal() {
@@ -59,8 +76,10 @@ class Modal {
     }
 
     TriggerModalCTA() {
-        const triggerModalCTA = document.querySelector(this._triggerModalCTA);
-        triggerModalCTA.addEventListener('click', () => this.OpenModal());
+        if(this._triggerModalCTA) {
+            const triggerModalCTA = document.querySelector(this._triggerModalCTA);
+            triggerModalCTA.addEventListener('click', () => this.OpenModal());
+        } 
     }
 
     HandleCTA(){
@@ -80,16 +99,18 @@ class Modal {
     
 }
 
-const muhModal = new Modal({
-    modalType: modalOne,
+const homepageModal = new Modal({
+    modalType: 'ModalTwo',
     title: 'My Modal',
-    classes: ['bob', 'jogn'],
+    classes: ['modal-body', 'modalOne'],
     desc: 'big sale, blah, blah',
     cta: [
         {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['learn-more'], eventHandler: () => {alert('Learn more')}},
-        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['cancel'], eventHandler: () => {muhModal.CloseModal();}}
+        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['cancel'], eventHandler: () => {homepageModal.CloseModal();}}
     ],
-    container: 'modal-app',
     openOnPageLoad: true,
-    triggerModalCTA: '.openModal'
+    triggerModalCTA: '.openModal',
+    bgImage: './assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg'
 });
+
+console.log(homepageModal);

@@ -7,18 +7,20 @@ body, html {
     font-family: sans-serif;
 }
 
-#modal-app {
+.modal-app {
     position: relative;
     display: none;
 }
 
-#modal-app.active {
+.active-modal .modal-app {
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
+    top: 0;
+    bottom: 0;
 }
 
 .modal-wrapper {
@@ -30,6 +32,8 @@ body, html {
     max-width: 600px;
     text-align: center;
 }
+
+
 
 
 .modal-backdrop {
