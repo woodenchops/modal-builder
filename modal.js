@@ -17,7 +17,18 @@ class Modal {
         this._backdrop = `<div class="modal-backdrop"></div>`;       
         this._container = document.createElement('div');
         this._container.classList.add('modal-app');
-        this._body = document.querySelector(props.attachTo) || document.querySelector('body');
+
+        try {
+            this._body = document.querySelector(props.attachTo) || document.querySelector('body');
+
+            if(this._body === null || this._body === undefined) {
+                throw new Error();
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+        
         this._loadIn = props.loadIn;
         
         this.init();
@@ -41,7 +52,6 @@ class Modal {
             this.BackDropCloseHandler();
             this.ToggleModal();
             this.HandleCTA();
-
         }
     }
 
@@ -65,20 +75,43 @@ class Modal {
 
     BackDropCloseHandler() {
         if(this.ModalActiveState) {
-            const backDrop = document.querySelector('.modal-backdrop');
-            backDrop.addEventListener('click', () => this.CloseModal());
+            try {
+                const backDrop = document.querySelector('.modal-backdrop');
+                backDrop.addEventListener('click', () => this.CloseModal());
+
+                if(backDrop === null || backDrop === undefined) {
+                    throw new Error();
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+            
         }  
     }
 
     TriggerModalCTA() {
         if(this._triggerModalCTA) {
-            const triggerModalCTA = document.querySelector(this._triggerModalCTA);
-            triggerModalCTA.addEventListener('click', () => this.OpenModal());
+            try {
+
+                const triggerModalCTA = document.querySelector(this._triggerModalCTA);
+                triggerModalCTA.addEventListener('click', () => this.OpenModal());
+
+                if(triggerModalCTA === null || triggerModalCTA === undefined) {
+                    throw new Error();
+                }
+                
+            } catch (error) {
+                console.error(error);
+            }
         } 
     }
 
     HandleCTA(){
         this._cta && this._cta.length > 0 && this._cta.map(cta => {
+            if(!cta.id) {
+                return;
+            }
             let button = document.getElementById(cta.id);
             return button.addEventListener('click', () => {
                return cta.eventHandler && cta.eventHandler();
@@ -94,19 +127,4 @@ class Modal {
     
 }
 
-const homepageModal = new Modal({
-    modalType: 'ModalTwo',
-    title: 'My Modal',
-    bgImage: './assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg',
-    desc: 'big sale, blah, blah',
-    cta: [
-        {id: 'learnMore', text: 'LEARN MORE', link: '#', classes: ['learn-more'], eventHandler: () => {alert('Learn more')}},
-        {id: 'cancel', text: 'CANCEL', link: '#', classes: ['cancel'], eventHandler: () => {homepageModal.CloseModal();}}
-    ],
-    classes: ['modal-body', 'modalOne'],
-    openOnPageLoad: true,
-    triggerModalCTA: '.openModal',
-    attachTo: '.page-787'
-});
-
-console.log(homepageModal);
+export default Modal;

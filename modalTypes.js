@@ -5,7 +5,7 @@ export const modalOne = (context) => {
                 <p class="modal-desc">${context._desc}</p>
                 <div class="modal-cta-wrapper">
                 ${context._cta.map(cta => {
-                    return `<a href="${cta.link}" id=${cta.id} class="modal-cta ${[...cta.classes].join(' ')}">${cta.text}</a>`;
+                    return cta.id && `<a href="${cta.link}" id=${cta.id} class="modal-cta ${[...cta.classes].join(' ')}">${cta.text}</a>`;
                 }).join(' ')}
                 </div>
             </div>`;
@@ -18,7 +18,7 @@ export const modalTwo = (context) => {
                 <p class="modal-desc">${context._desc}</p>
                 <div class="modal-cta-wrapper">
                 ${context._cta.map(cta => {
-                    return `<a href="${cta.link}" id=${cta.id} class="modal-cta ${[...cta.classes].join(' ')}">${cta.text}</a>`;
+                    return cta.id && `<a href="${cta.link}" id=${cta.id} class="modal-cta ${[...cta.classes].join(' ')}">${cta.text}</a>`;
                 }).join(' ')}
                 </div>
             </div>`;
