@@ -50,7 +50,7 @@ class Modal {
     }
 
     ToggleModal() {
-        this.ModalActiveState ? this._body.classList.add(this._activeClass) : this._body.classList.remove(this._activeClass);
+        this.ModalActiveState ? setTimeout(() => {this._body.classList.add(this._activeClass)}, 100)  : this._body.classList.remove(this._activeClass);
     }
 
     CloseModal() {
@@ -106,8 +106,7 @@ const homepageModal = new Modal({
     classes: ['modal-body', 'modalOne'],
     openOnPageLoad: true,
     triggerModalCTA: '.openModal',
-    attachTo: '.page-787',
-    // loadIn: 2000
+    attachTo: '.page-787'
 });
 
 console.log(homepageModal);

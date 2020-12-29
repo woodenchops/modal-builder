@@ -9,10 +9,12 @@ body, html {
 
 .modal-app {
     position: relative;
-    display: none;
+    opacity: 0;
+    transform: translateY(-150%);
 }
 
 .active-modal .modal-app {
+    opacity: 1;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -21,9 +23,16 @@ body, html {
     width: 100%;
     top: 0;
     bottom: 0;
+    transform: translateY(0%);
+    
 }
 
 .modal-wrapper {
+    transform: translateY(-150%);
+}
+
+.active-modal .modal-wrapper {
+    transition: transform 1s;
     position: relative;
     z-index: 2;
     background-color: #fff;
@@ -31,12 +40,16 @@ body, html {
     width: 100%;
     max-width: 600px;
     text-align: center;
+    transform: translateY(0%);
 }
 
 
-
-
 .modal-backdrop {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+.active-modal .modal-backdrop {
     background: rgba(0,0,0, .67);
     position: absolute;
     width: 100vw;
@@ -44,6 +57,7 @@ body, html {
     top: 0;
     bottom: 0;
     z-index: 1;
+    opacity: 1;
 }
 
 .modal-backdrop:hover {
