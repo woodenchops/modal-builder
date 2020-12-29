@@ -1,0 +1,31 @@
+[
+   {
+    "apiModal": {
+        "modalType": "ModalTwo",
+        "title": "My Modal",
+        "bgImage": "./assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg",
+        "desc": "big sale, blah, blah",
+        "cta": [
+            {"id": "learnMore", "text": "LEARN MORE", "link": "#", "classes": ["learn-more"]}
+        ],
+        "classes": ["modal-body"],
+        "openOnPageLoad": true,
+        "triggerModalCTA": ".openModal",
+        "attachTo": ".page-787"
+    },
+
+    "apiModalTwo": {
+        "modalType": "ModalTwo",
+        "title": "My Modal Two",
+        "bgImage": "./assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg",
+        "desc": "big sale, blah, blah",
+        "cta": [
+            {"id": "learnMore", "text": "LEARN MORE", "link": "#", "classes": ["learn-more"]}
+        ],
+        "classes": ["modal-body"],
+        "openOnPageLoad": true,
+        "triggerModalCTA": ".openModal",
+        "attachTo": ".page-787"
+    }
+  }
+]
