@@ -1,2 +1,1 @@
-// import {hardCodedModal} from './hardcodedModel.js';
-import {apiModal} from './apiModal.js';
+import {homePageModal} from './homePageModal.js';

@@ -1,7 +1,7 @@
 import Modal from './modal.js';
 
 
-export const hardCodedModal = new Modal({
+export const homePageModal = new Modal({
     modalType: 'ModalTwo',
     title: 'My Modal',
     bgImage: './assets/images/christmas-winter-composition-frame-made-600w-1224165394.jpg',
