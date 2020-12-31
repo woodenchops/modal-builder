@@ -19,7 +19,7 @@ export const homePageModal = () => {
         });
 }
 
-export const homeHalfNHalfPageModal = () => {
+export const homePageHalfAndHalfModal = () => {
     return new Modal({
         modalType: 'ModalThree',
         title: 'My Modal',

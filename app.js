@@ -1,3 +1,3 @@
-import {homePageModal, homeHalfNHalfPageModal} from './homePageModal.js';
+import {homePageModal, homePageHalfAndHalfModal} from './homePageModal.js';
 
-homeHalfNHalfPageModal();
+homePageHalfAndHalfModal();
