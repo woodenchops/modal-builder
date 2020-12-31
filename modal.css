@@ -79,3 +79,28 @@ body, html {
 .modal-cta.cancel {
     background-color: grey
 }
+
+.half-n-half-container {
+    display:flex;
+}
+
+.col {
+    flex-basis: 50%;
+}
+
+.bg-image {
+    background-position:center;
+    background-size: cover;
+}
+
+.modal-wrapper.half-modal {
+    padding: 0;
+}
+
+.modal-wrapper.half-modal .content {
+    padding: 1rem;
+}
+
+.modal-wrapper.half-modal .content h3 {
+    margin-top: 0;
+}

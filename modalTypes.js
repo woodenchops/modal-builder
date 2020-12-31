@@ -25,6 +25,29 @@ export const modalTwo = (context) => {
 };
 
 
+export const modalThree = (context) => {
+
+
+    return `<div class="modal-wrapper half-modal">
+
+            <div class="half-n-half-container">
+
+            <div class="bg-image col" style="background-image: url(${context._bgImage})"></div>
+            <div class="content col">
+                <h3>${context._title}</h3>
+                <p>${context._desc}</p>
+                ${context._cta.map(cta => {
+                    return cta.id && `<a href="${cta.link}" id=${cta.id} class="modal-cta ${[...cta.classes].join(' ')}">${cta.text}</a>`;
+                }).join(' ')}
+            </div>
+
+            </div>
+
+        </div>`;
+
+}
+
+
 
 export const setModalType = (context, props) => {
     context._modalType;
@@ -35,6 +58,9 @@ export const setModalType = (context, props) => {
             break;
         case 'ModalTwo':
         context._modalType = modalTwo;
+        break;
+        case 'ModalThree':
+        context._modalType = modalThree;
         break;
         default:
             context._modalType = modalOne;
